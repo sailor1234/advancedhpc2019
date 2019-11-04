@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Labwork 2}
+\author{Benjamin Abba}
+\date{November 2019}
+
+\begin{document}
+
+\maketitle
+
+\section*{Process}
+The process involves getting device information such as the device name, memory clock rate and memory.
+\section*{Code}
+the code used is as follows:
+
+void Labwork::labwork2_GPU() {
+    int nDevices = 0;
+    // get all devices
+    cudaGetDeviceCount(&nDevices);
+    printf("Number total of GPU : %d\n\n", nDevices);
+    for (int i = 0; i < nDevices; i++){
+        // get informations from individual device
+        cudaDeviceProp prop;
+        cudaGetDeviceProperties(&prop, i);
+        // something more here
+
+       // get device properties
+       printf("Device Number: %d\n", i);
+    printf("  Device name: %s\n", prop.name);
+    printf("  Memory Clock Rate (KHz): %d\n",
+           prop.memoryClockRate);
+    printf("  Memory Bus Width (bits): %d\n", prop.memoryBusWidth);
+    }
+
+}
+
+\section*{Output}
+Executing this command generates the following output: 
+
+student8@ictserver2:/storage/student8/advancedhpc2019/labwork/build$ ./labwork 2 
+USTH ICT Master 2018, Advanced Programming for HPC.
+Warming up...
+Starting labwork 2
+Number total of GPU : 2
+
+labwork 2 ellapsed 1.3ms
+
+
+
+\end{document}
+
